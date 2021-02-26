@@ -48,8 +48,8 @@ const transit = createJsonController('http://3.140.156.174:3002/api/getNearbyTra
 // Emmanuel
 const address = createJsonController('http://ec2-54-177-170-134.us-west-1.compute.amazonaws.com:5001/api/nearbyworkspaces/address');
 const nearbyBuildings = createJsonController('http://ec2-54-177-170-134.us-west-1.compute.amazonaws.com:5001/api/nearbyworkspaces/buildings');
-const reviews = createJsonController('http://ec2-184-169-176-177.us-west-1.compute.amazonaws.com/api/reviews/info');
-const reviewInfo = createJsonController('http://ec2-184-169-176-177.us-west-1.compute.amazonaws.com/api/reviews/all');
+const reviews = createJsonController('http://184.169.176.177:5002/api/reviews/info');
+const reviewInfo = createJsonController('http://184.169.176.177:5002/api/reviews/all');
 
 // Josh
 const description = createJsonController('http://54.151.43.93:6060/api/workspace-description');

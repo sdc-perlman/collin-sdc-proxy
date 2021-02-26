@@ -7,6 +7,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
+
 <style>
 html {
   box-sizing: border-box;
@@ -17,13 +18,17 @@ html {
   box-sizing: inherit;
 }
 
+h2, h4, a {
+  margin: initial !important;
+}
+
 .page {
   margin: auto;
   max-width: 1320px;
 }
 
 .header {
-  margin: 48px 0;
+  margin: 40px 0 32px;
 }
 
 .main {
@@ -40,6 +45,22 @@ html {
   padding-left: 24px;
 }
 
+.section {
+  padding: 48px 0;
+}
+
+#amenities .main-container {
+  margin: 20px 0;
+}
+
+#amenities #amenity-title {
+  margin-bottom: 16px !important;
+}
+
+#amenities #amenity-container {
+  margin: 17px -15px;
+}
+
 #contact-service {
   height: 100%;
 }
@@ -48,7 +69,85 @@ html {
   width: auto;
   height: 100%;
 }
+
+#contact-service .self-serve-wrapper button {
+  height: auto;
+  box-sizing: border-box;
+}
+
+#location-service h2 {
+  margin-bottom: 16px !important;
+}
+
+#location-service address {
+  font-family: "Apercu Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+#nearby .nb-description-title {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+#nearby .nb-grid {
+  height: 183px;
+  grid-template-columns: 349px auto;
+}
+
+#nearby .nb-photo {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  top: unset;
+  left: unset;
+  transform: unset;
+}
+
+#reviews h2 {
+  margin-bottom: 16px !important;
+}
+
+#workspaces .container {
+  margin: 15px 0;
+}
+
+#workspaces .main-title {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 0;
+}
+
+#workspaces .modal-container {
+  margin: 16px 0;
+}
+
+#workspaces .persons-container,
+#workspaces .date-container {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+#workspaces .persons-button,
+#workspaces .date-button {
+  margin: 0;
+  display: inline-block;
+  height: 30px;
+  padding: 0 8px;
+  border-radius: 15px;
+  right: 0;
+}
+
+#workspaces .category {
+  font-size: 14px;
+  font-family: "Apercu Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  color: #666;
+  margin: 24px 0 12px;
+}
+
+#workspace-description h2 {
+  margin-bottom: 16px !important;
+}
 </style>
+
 </head>
 <body>
   <div id="nav"></div>
@@ -60,11 +159,12 @@ html {
     <div class="main">
       <div class="content">
         <div id="photos-slider"></div>
-        <div id="workspaces"></div>
-        <div id="location-service"></div>
-        <div id="workspace-description"></div>
-        <div id="reviews"></div>
-        <div id="nearby"></div>
+        <div class="section" id="workspaces"></div>
+        <div class="section" id="amenities"></div>
+        <div class="section" id="location-service"></div>
+        <div class="section" id="workspace-description"></div>
+        <div class="section" id="reviews"></div>
+        <div class="section" id="nearby"></div>
       </div>
       <div class="sidebar">
         <div id="contact-service"></div>
@@ -74,24 +174,28 @@ html {
   <div id="footer"></div>
 
   <script src="https://kit.fontawesome.com/bb32e62705.js" crossorigin="anonymous"></script>
+  <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
+  <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
 
   <!-- Josh -->
-  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/workspace-description.js"></script>
-  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/photos-slider.js"></script>
+  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/workspace-description.js.gz"></script>
+  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/photos-slider.js.gz"></script>
 
   <!-- Chris -->
-  <script src="https://fec-location-service.s3.us-east-2.amazonaws.com/main.js"></script>
-  <script src="https://fec-contact-service.s3.us-east-2.amazonaws.com/main.js"></script>
+  <script src="https://fec-location-service.s3.us-east-2.amazonaws.com/main.compressed.js"></script>
+  <script src="https://fec-contact-service.s3.us-east-2.amazonaws.com/main.compressed.js"></script>
 
   <!-- Benny -->
   <script src="https://workspaces-service.s3-us-west-1.amazonaws.com/dist/workspaces.js"></script>
+  <script src="https://amenities-service.s3-us-west-1.amazonaws.com/dist/amenities.js"></script>
 
   <!-- Emmanuel -->
   <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/reviews.js"></script>
   <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nearby.js"></script>
 
   <!-- Global -->
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nav.js"></script>
+  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/nav.js.gz"></script>
   <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/layout.js"></script>
 </body>
 </html>
