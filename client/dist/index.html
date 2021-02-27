@@ -49,6 +49,170 @@ h2, h4, a {
   padding: 48px 0;
 }
 
+footer {
+  padding: 4rem 0;
+  background-color: #f7f7f7;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.inner-footer {
+  margin: auto;
+  padding: 50px 0;
+  width: 1320px;
+}
+
+.middle-block {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-links {
+  display: flex;
+}
+
+.footer-links h3 {
+  padding-bottom: 10px;
+  color: #666;
+  text-transform: uppercase;
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.footer-list-item {
+  margin-right: 24px;
+  padding: 5px 0;
+}
+
+.footer-list-item:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.icons {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.icons i {
+  margin-left: 3rem;
+}
+
+.language-wrapper {
+  border: .0625rem solid #666;
+  background-color: #fff;
+  border-radius: .25rem;
+  position: relative;
+  height: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.language-wrapper {
+  padding: 0 11px
+}
+
+.selector {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+
+.selector label {
+  font-size: .75rem;
+  padding-top: 0;
+  top: -.375rem;
+  left: .375rem;
+  padding-left: .375rem;
+  padding-right: .375rem;
+  width: auto;
+  height: auto;
+  background: #FFF;
+  position: absolute;
+}
+
+.inner-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.bottom-block {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 40px;
+}
+
+.location-select {
+  color: blue;
+  display: flex;
+}
+
+.location-select p {
+  padding-right: 10px;
+  padding-bottom: 20px;
+}
+
+.address {
+  line-height: 1.5rem;
+}
+
+.legal-section {
+  display: flex;
+}
+
+.legal-menu ul {
+  display: flex;
+  color: blue;
+  margin-bottom: .75rem;
+}
+
+.col-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.copyright {
+  color: #666
+}
+
+.logo {
+  margin-left: 1.5rem;
+}
+
+.breadcrumbs {
+  background-color: #f7f7f7;
+  border-top: 1px solid #e6e6e6;
+  border-bottom: 1px solid #e6e6e6;
+  height: 64px;
+  font-size: 12px;
+  color: #666;
+  margin-top: 48px;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+}
+
+.breadcrumbs ul {
+  display: flex;
+  width: 1320px;
+  margin: auto;
+}
+
+.breadcrumbs li, .breadcrumbs li a {
+  margin-right: 8px;
+}
+
+.breadcrumbs li:not(:last-child)::after {
+  content: ">";
+  width: 0.625rem;
+  height: 1.875rem;
+}
+
 #amenities .main-container {
   margin: 20px 0;
 }
@@ -81,6 +245,12 @@ h2, h4, a {
 
 #location-service address {
   font-family: "Apercu Mono", SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+#header-review-stats .reviews-section-stats {
+  border-bottom: 0;
+  padding-bottom: 0;
+  margin-top: 12px;
 }
 
 #nearby .nb-description-title {
@@ -155,7 +325,7 @@ h2, h4, a {
   <div class="page">
     <div class="header">
       <div id="workspace-header"></div>
-      <div id="layout-header-address"></div>
+      <div id="header-review-stats"></div>
     </div>
     <div class="main">
       <div class="content">
@@ -172,12 +342,119 @@ h2, h4, a {
       </div>
     </div>
   </div>
-  <div id="footer"></div>
+  <div class="breadcrumbs">
+    <ul>
+      <li><a>All locations</a></li>
+      <li><a>Region</a></li>
+      <li><a>City</a></li>
+      <li><a>Neighborhood</a></li>
+      <li><a>Building</a></li>
+    </ul>
+  </div>
+  <footer>
+    <div class="inner-footer">
+      <div class="middle-block">
+        <div class="footer-links">
+          <div class="list">
+            <h3>Company</h3>
+            <ul>
+              <li class="footer-list-item">Global Locations</li>
+              <li class="footer-list-item">Mission</li>
+              <li class="footer-list-item">Inclusion & Diversity</li>
+              <li class="footer-list-item">Careers</li>
+              <li class="footer-list-item">Investors</li>
+              <li class="footer-list-item">Newsroom</li>
+            </ul>
+          </div>
+          <div class="list">
+            <h3>Partnerships</h3>
+            <ul>
+              <li class="footer-list-item">Brokers</li>
+              <li class="footer-list-item">Landlords</li>
+              <li class="footer-list-item">Refer a Friend</li>
+              <li class="footer-list-item">Event Planners</li>
+              <li class="footer-list-item">Referral Partners</li>
+            </ul>
+          </div>
+          <div class="list">
+            <h3>Impact</h3>
+            <ul>
+              <li class="footer-list-item">Refugee Initiative</li>
+              <li class="footer-list-item">Veterans in Residence</li>
+            </ul>
+          </div>
+          <div class="list">
+            <h3>Support</h3>
+            <ul class="footer-list">
+              <li class="footer-list-item">COVID Response</li>
+              <li class="footer-list-item">FAQ</li>
+              <li class="footer-list-item">Contact Us</li>
+            </ul>
+          </div>
+        </div>
+        <div class="selector">
+          <div class="icons">
+            <i class="fab fa-facebook-f fa-lg"></i>
+            <i class="fab fa-instagram fa-lg"></i>
+            <i class="fab fa-twitter fa-lg"></i>
+            <i class="fab fa-linkedin-in fa-lg"></i>
+          </div>
+          <div class="language-wrapper">
+            <label>Language</label>
+            <div class="inner-content">
+              <p>English</p>
+              <i class="fas fa-caret-down"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-block">
+        <div class="col-1">
+          <div class="contact-info">
+            <div class="location-select">
+              <p>All Locations</p>
+              <i class="fas fa-caret-down"></i>
+            </div>
+            <div class="address">
+              <p style="color: blue;">(646) 389-3992</p>
+              <p>WeWork HQ, 115 W 18th St.</p>
+              <p>New York, NY 10011</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-2">
+          <div class="legal-section">
+            <div>
+              <div class="legal-menu">
+                <ul>
+                  <li class="footer-list-item">Privacy</li>
+                  <li class="footer-list-item">Terms</li>
+                  <li class="footer-list-item">Cookies</li>
+                  <li class="footer-list-item">Accessibility</li>
+                  <li class="footer-list-item">Sitemap</li>
+                </ul>
+              </div>
+              <div class="copyright">
+                Copyright © 2021 WeWork Companies Inc. All rights reserved
+              </div>
+            </div>
+            <div class="logo">
+              <img src="https://www.wework.com/vanilla-assets/images/we_logo.a32545795fe3f59def511d1b8069c271.svg" height="48px;"/>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://kit.fontawesome.com/bb32e62705.js" crossorigin="anonymous"></script>
   <script crossorigin src="https://unpkg.com/react@17/umd/react.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js"></script>
   <script crossorigin src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- Global -->
+  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/nav.js.gz"></script>
+  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/layout.js"></script>
 
   <!-- Josh -->
   <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/workspace-description.js.gz"></script>
@@ -195,9 +472,6 @@ h2, h4, a {
   <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/reviews.js"></script>
   <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nearby.js"></script>
 
-  <!-- Global -->
-  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/nav.js.gz"></script>
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/layout.js"></script>
 </body>
 </html>
 
