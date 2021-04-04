@@ -8,91 +8,150 @@
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <link href="https://api.mapbox.com/mapbox-gl-js/v2.0.1/mapbox-gl.css" rel="stylesheet" />
 <style>
-html {
-  box-sizing: border-box;
-  font-family: Roboto, sans-serif !important;
-}
+  /* html {
+    box-sizing: border-box;
+    font-family: Roboto, sans-serif !important;
+  }
 
-*, *::before, *::after {
-  box-sizing: inherit;
-}
+  *, *::before, *::after {
+    box-sizing: inherit;
+  }
 
-.page {
-  margin: auto;
-  max-width: 1320px;
-}
+  .page {
+    margin: auto;
+    max-width: 1320px;
+  }
 
-.header {
-  margin: 48px 0;
-}
+  .header {
+    margin: 48px 0;
+  }
 
-.main {
-  display: flex;
-  flex-wrap: wrap;
-}
+  .main {
+    display: flex;
+    flex-wrap: wrap;
+  }
 
-.content {
-  flex: 0 0 872px;
-}
+  .content {
+    flex: 0 0 872px;
+  }
 
-.sidebar {
-  flex: 0 0 448px;
-  padding-left: 24px;
-}
+  .sidebar {
+    flex: 0 0 448px;
+    padding-left: 24px;
+  }
 
-#contact-service {
-  height: 100%;
-}
+  #contact-service {
+    height: 100%;
+  }
 
-#contact-service > .column-container {
-  width: auto;
-  height: 100%;
-}
+  #contact-service > .column-container {
+    width: auto;
+    height: 100%;
+  } */
+
+  .proxy-container {
+      margin: auto;
+      width: 90%;
+      max-width: 1200px;
+
+    }
+
+    .proxy-container-columns {
+      width: 100%;
+      height: 100%;
+      display: grid;
+      grid-template-columns: 60% 40%;
+      grid-gap: 15px;
+    }
+
+    @media screen and (max-width: 1000px) {
+      .proxy-container-columns {
+        display: block;
+
+      }
+    }
+
+    .col-2 {
+      height: 100%;
+    }
+
+    html, body, div, span, applet, object, iframe,
+    h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+    a, abbr, acronym, address, big, cite, code,
+    del, dfn, em, img, ins, kbd, q, s, samp,
+    small, strike, strong, sub, sup, tt, var,
+    b, u, i, center,
+    dl, dt, dd, ol, ul, li,
+    fieldset, form, label, legend,
+    table, caption, tbody, tfoot, thead, tr, th, td,
+    article, aside, canvas, details, embed,
+    figure, figcaption, footer, header, hgroup,
+    menu, nav, output, ruby, section, summary,
+    time, mark, audio, video {
+      margin: 0;
+      padding: 0;
+      border: 0;
+      font-size: 100%;
+      font: inherit;
+      vertical-align: baseline;
+    }
+    /* // HTML5 display-role reset for older browsers */
+    article, aside, details, figcaption, figure,
+    footer, header, hgroup, menu, nav, section {
+      display: block;
+    }
+    body {
+      line-height: 1;
+    }
+    ol, ul {
+      list-style: none;
+    }
+    blockquote, q {
+      quotes: none;
+    }
+    blockquote:before, blockquote:after,
+    q:before, q:after {
+      content: '';
+      content: none;
+    }
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+    }
 </style>
 </head>
 <body>
   <div id="nav"></div>
-  <div class="page">
-    <div class="header">
-      <div id="workspace-header"></div>
-      <div id="layout-header-address"></div>
-    </div>
-    <div class="main">
-      <div class="content">
-        <div id="photos-slider"></div>
-        <div id="workspaces"></div>
-        <div id="location-service"></div>
-        <div id="workspace-description"></div>
-        <div id="reviews"></div>
-        <div id="nearby"></div>
-      </div>
-      <div class="sidebar">
-        <div id="contact-service"></div>
+  <body>
+    <div class="proxy-container">
+      <div class="proxy-container-columns">
+        <div class="col-1">
+          <div id="nearby"></div>
+        </div>
+        <div class="col-2">
+          <div id="app"></div>
+        </div>
       </div>
     </div>
-  </div>
   <div id="footer"></div>
 
   <script src="https://kit.fontawesome.com/bb32e62705.js" crossorigin="anonymous"></script>
 
+  <!-- Becky -->
+  <!-- <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/photos-slider.js"></script> -->
+
   <!-- Josh -->
-  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/workspace-description.js"></script>
-  <script src="https://rpt25-photos-service.s3-us-west-1.amazonaws.com/js/photos-slider.js"></script>
+  <!-- <script src="https://fec-location-service.s3.us-east-2.amazonaws.com/main.js"></script> -->
 
-  <!-- Chris -->
-  <script src="https://fec-location-service.s3.us-east-2.amazonaws.com/main.js"></script>
-  <script src="https://fec-contact-service.s3.us-east-2.amazonaws.com/main.js"></script>
+  <!-- Dane -->
+  <!-- <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/reviews.js"></script> -->
 
-  <!-- Benny -->
-  <script src="https://workspaces-service.s3-us-west-1.amazonaws.com/dist/workspaces.js"></script>
-
-  <!-- Emmanuel -->
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/reviews.js"></script>
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nearby.js"></script>
+  <!-- Collin -->
+  <script src="nearby.js"></script>
 
   <!-- Global -->
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nav.js"></script>
-  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/layout.js"></script>
+  <!-- <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/nav.js"></script>
+  <script src="https://spacework-bundles.s3-us-west-1.amazonaws.com/layout.js"></script> -->
 </body>
 </html>
 

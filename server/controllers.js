@@ -26,7 +26,7 @@ const createJsonController = endpoint => async (req, res) => {
 const workspace = createJsonController('http://54.193.132.156:4000/workspace-api/workspace');
 const amenities = createJsonController('http://54.219.57.231:4002/amenities-api/amenity');
 
-// Chris
+// Josh
 // Can't use createJsonController because this uses req.query
 const availability = async (req, res) => {
   const { id } = req.query;
@@ -45,13 +45,15 @@ const availability = async (req, res) => {
 };
 const transit = createJsonController('http://3.140.156.174:3002/api/getNearbyTransitOptions');
 
-// Emmanuel
+// Collin
 const address = createJsonController('http://ec2-54-177-170-134.us-west-1.compute.amazonaws.com:5001/api/nearbyworkspaces/address');
-const nearbyBuildings = createJsonController('http://ec2-54-177-170-134.us-west-1.compute.amazonaws.com:5001/api/nearbyworkspaces/buildings');
+const nearbyBuildings = createJsonController('http://localhost:5001/api/nearbyworkspaces/buildings');
+
+// Dane
 const reviews = createJsonController('http://ec2-184-169-176-177.us-west-1.compute.amazonaws.com/api/reviews/info');
 const reviewInfo = createJsonController('http://ec2-184-169-176-177.us-west-1.compute.amazonaws.com/api/reviews/all');
 
-// Josh
+// Becky
 const description = createJsonController('http://54.151.43.93:6060/api/workspace-description');
 const photos = createJsonController('http://54.151.43.93:6001/api/photos');
 const photosByWorkspace = createJsonController('http://54.151.43.93:6001/api/photos/workspace');
