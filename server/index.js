@@ -2,7 +2,7 @@ require('newrelic');
 
 const path = require('path');
 const express = require('express');
-const request = require('request');
+const axios = require ('axios');
 const morgan = require('morgan');
 const cors = require('cors');
 const get = require('./controllers.js');
@@ -10,7 +10,7 @@ const get = require('./controllers.js');
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(morgan('dev'));
+// app.use(morgan('dev'));
 app.use(cors());
 
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
@@ -31,6 +31,7 @@ app.use('/buildings/:workspaceId', express.static(path.join(__dirname, '../clien
 
 // Collin
 app.get('/api/nearbyworkspaces/buildings/:id', get.nearbyBuildings);
+// const { data: photos } = await axios.get(`http://localhost:5001/api/photos/${workspaceId}?ids=${locationPointers.map((x) => x.workspaceId).join(',')}`);
 // app.get('/api/nearbyworkspaces/address/:id', get.address);
 
 // Port 6000 is insecure for chrome, otherwise I would use 6000
