@@ -16,21 +16,21 @@ app.use(cors());
 app.use('/', express.static(path.join(__dirname, '../client/dist')));
 app.use('/buildings/:workspaceId', express.static(path.join(__dirname, '../client/dist')));
 
-
-// Josh
-// app.get('/api/availability', get.availability);
-// app.get('/api/getNearbyTransitOptions/:id', get.transit);
-
-// Becky
-// app.get('/api/photos/:id', get.photos);
-// app.get('/api/photos/workspace/:id', get.photosByWorkspace);
-
-// Dane
-// app.get('/api/reviews/all/:id', get.reviews);
-// app.get('/api/reviews/info/:id', get.reviewInfo);
-
-// Collin
 app.get('/api/nearbyworkspaces/buildings/:id', get.nearbyBuildings);
+app.post('/api/nearbyworkspaces/buildings/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const { data: { origin } } = await axios.post(`http://localhost:5001/api/nearbyworkspaces/buildings/${id}`,{
+      ...req.body,
+    });
+    res.status(200)
+      .json({ origin });
+  } catch (err) {
+    console.log(err);
+    res.status(err.status || 500)
+      .send({ success: false, status: err.status || 500, message: err.message });
+  }
+});
 // const { data: photos } = await axios.get(`http://localhost:5001/api/photos/${workspaceId}?ids=${locationPointers.map((x) => x.workspaceId).join(',')}`);
 // app.get('/api/nearbyworkspaces/address/:id', get.address);
 
