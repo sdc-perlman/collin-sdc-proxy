@@ -1,12 +1,11 @@
 const path = require('path');
 const webpack = require('webpack');
-const nodeExternals = require('webpack-node-externals');
 const S3Plugin = require('webpack-s3-plugin');
 const CompressionPlugin = require('compression-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 require('dotenv').config();
 
-const browserConfig = {
+module.exports = {
     mode: 'production',
     entry: './src/index.jsx',
     output: {
@@ -48,36 +47,4 @@ const browserConfig = {
     resolve: {
         extensions: ['.js', '.jsx'],
     },
-}
-
-const serverConfig = {
-    entry: path.resolve(__dirname, './server/index.js'),
-    mode: 'production',
-    target: 'node',
-    externals: [nodeExternals()],
-
-    output: {
-        path: path.resolve(__dirname, './server'),
-        filename: 'server.bundle.js',
-    },
-
-    resolve: {
-        extensions: ['.js', '.jsx'],
-    },
-
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                use: 'babel-loader',
-            },
-        ],
-    },
-    plugins: [
-        new webpack.DefinePlugin({
-          __isBrowser__: "false"
-        }),
-      ]
 };
-
-  module.exports = [browserConfig, serverConfig]

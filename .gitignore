@@ -14,3 +14,7 @@ dist/*
 !dist/index.html
 
 newrelic_agent.log
+
+server/server.bundle.js
+
+public
