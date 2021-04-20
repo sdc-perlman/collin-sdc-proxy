@@ -1,43 +1,41 @@
-require('newrelic');
+import express from 'express';
+import axios from 'axios';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import fs from 'fs';
 
-const path = require('path');
-const express = require('express');
-const axios = require ('axios');
-const morgan = require('morgan');
-const cors = require('cors');
-const get = require('./controllers.js');
+import NearbyService from '../src/components/NearbyService.jsx';
 
+const port = 6002;
 const app = express();
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// app.use(morgan('dev'));
-app.use(cors());
+app.use(express.static('public'));
 
-app.use('/', express.static(path.join(__dirname, '../client/dist')));
-app.use('/buildings/:workspaceId', express.static(path.join(__dirname, '../client/dist')));
+app.use('/buildings/:id', (req, res) => {
+  const  { id } = req.params;
 
-app.get('/api/nearbyworkspaces/buildings/:id', get.nearbyBuildings);
-app.post('/api/nearbyworkspaces/buildings/:id', async (req, res) => {
-  const { id } = req.params;
-  try {
-    const { data: { origin } } = await axios.post(`http://localhost:5001/api/nearbyworkspaces/buildings/${id}`,{
-      ...req.body,
-    });
-    res.status(200)
-      .json({ origin });
-  } catch (err) {
-    console.log(err);
-    res.status(err.status || 500)
-      .send({ success: false, status: err.status || 500, message: err.message });
-  }
+  fs.readFile('server/index.html', 'utf8', async (err, html) => {
+    if(err) {
+      console.log(err);
+      return res.status(err.status || 500)
+        .send({ success: false, status: err.status || 500, message: err.message });
+    } else {
+      try {
+        const { data: initialData } = await axios.get('http://localhost:5001/api/nearbyworkspaces/buildings/' + id);
+        const content = renderToString(<NearbyService initialData={initialData} />);
+        const nearby = html.replace('<div id="nearby"></div>', `<div id="nearby">${content}</div>`);
+        return res.send(nearby.replace(
+          '<script defer="defer" id="global"></script>',
+          `<script defer="defer" id="global">window.initial_data = ${JSON.stringify(initialData)}</script>`
+      ));
+      } catch(error) {
+        console.log(error);
+        res.send(html);
+      }
+
+    }
+  })
 });
-// const { data: photos } = await axios.get(`http://localhost:5001/api/photos/${workspaceId}?ids=${locationPointers.map((x) => x.workspaceId).join(',')}`);
-// app.get('/api/nearbyworkspaces/address/:id', get.address);
-
-// Port 6000 is insecure for chrome, otherwise I would use 6000
-const port = process.env.PORT ? process.env.PORT : 6002;
 
 app.listen(port, () => {
   console.log(`listening on port ${port}`);
 });
-
