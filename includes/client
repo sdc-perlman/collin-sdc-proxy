@@ -1,0 +1,15 @@
+location / {
+    try_files /index.html =404;
+}
+
+location /api/nearbyworkspaces {
+      proxy_ignore_headers X-Accel-Expires Expires Cache-Control Set-Cookie;
+      proxy_cache mycache;
+      proxy_cache_valid any 48h;
+      proxy_cache_methods GET HEAD;
+      proxy_buffering on;
+      proxy_cache_min_uses 1;
+      proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+      add_header X-Proxy-Cache $upstream_cache_status;
+      proxy_pass http://no_redis;
+}

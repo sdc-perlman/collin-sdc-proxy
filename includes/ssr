@@ -1,0 +1,12 @@
+location / {
+      proxy_ignore_headers X-Accel-Expires Expires Cache-Control Set-Cookie;
+      proxy_set_header Host $host;
+      proxy_cache mycache;
+      proxy_cache_valid any 48h;
+      #proxy_cache_methods GET HEAD;
+      proxy_buffering on;
+      #proxy_cache_min_uses 1;
+      #proxy_cache_use_stale error timeout http_500 http_502 http_503 http_504;
+      add_header X-Proxy-Cache $upstream_cache_status;
+      proxy_pass http://ssr;
+}
