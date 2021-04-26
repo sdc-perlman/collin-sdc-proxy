@@ -8,7 +8,6 @@ import NearbyService from '../src/components/NearbyService.jsx';
 
 const port = 6002;
 const app = express();
-app.use(express.static('public'));
 
 app.use('/buildings/:id', (req, res) => {
   const  { id } = req.params;
@@ -20,8 +19,8 @@ app.use('/buildings/:id', (req, res) => {
         .send({ success: false, status: err.status || 500, message: err.message });
     } else {
       try {
-        const { data: initialData } = await axios.get('http://localhost:5001/api/nearbyworkspaces/buildings/' + id);
-        const content = renderToString(<NearbyService initialData={initialData} />);
+        const { data: initialData } = await axios.get('http://172.31.3.39:5001/api/nearbyworkspaces/buildings/' + id);
+        const content = renderToString(<NearbyService nearbyWorkspaces={initialData} />);
         const nearby = html.replace('<div id="nearby"></div>', `<div id="nearby">${content}</div>`);
         return res.send(nearby.replace(
           '<script defer="defer" id="global"></script>',

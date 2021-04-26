@@ -1,16 +1,13 @@
-FROM node:15-alpine as build
+FROM node:15-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
 RUN npm install
 
-FROM nginx:stable-alpine
+COPY . .
 
-COPY --from=build /app/dist /var/www/static
-COPY --from=build /app/nginx.conf /etc/nginx/nginx.conf
+EXPOSE 6002
 
-EXPOSE 80
-
-CMD ["nginx", "-g", "daemon off;"]
+CMD ["npm", "run", "ssr"]
